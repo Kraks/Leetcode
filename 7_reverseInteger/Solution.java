@@ -1,7 +1,6 @@
 public class Solution {
     public int reverse(int x) {
-        if (x == 0)
-            return 0;
+        if (x == 0) return 0;
         byte[] t = String.format("%d", x).getBytes();
         byte[] src;
         if (x < 0) {
