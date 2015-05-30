@@ -1,15 +1,12 @@
-start = int('A'.encode('hex'), 16)
+start = ord('A')
 class Solution:
     # @param {string} s
     # @return {integer}
     def titleToNumber(self, s):
         num = 0
         for index, x in enumerate(reversed(s)):
-            t = int(x.encode('hex'), 16) - start + 1
-            if index == 0:
-                num += t
-            else:
-                num += index * 26 * t
+            t = ord(x) - start + 1
+            num += t * pow(26, index)
         return num
 
 if __name__ == "__main__":
@@ -19,4 +16,6 @@ if __name__ == "__main__":
     print s.titleToNumber('AA')     #27
     print s.titleToNumber('BA')     #53
     print s.titleToNumber('BB')     #54
+    print s.titleToNumber('AAA')    #703
+    print s.titleToNumber('AJHX')   #24568
 
