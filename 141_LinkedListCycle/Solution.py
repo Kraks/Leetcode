@@ -7,7 +7,7 @@ class ListNode:
 class Solution:
     # @param head, a ListNode
     # @return a boolean
-    def hasCycle(self, head): #WORK
+    def hasCycle(self, head):
         slow = head
         fast = head
         while fast and fast.next:
