@@ -8,8 +8,7 @@ class Solution:
         if len(matrix) > 0:
             acc.extend(matrix[0])
             return self.auxSpiralOrder(rotate(matrix[1:]), acc)
-        else:
-            return acc
+        else: return acc
 
     # @param {integer[][]} matrix
     # @return {integer[]}
