@@ -9,25 +9,17 @@ class Solution:
     # @param {integer} val
     # @return {ListNode}
     def removeElements(self, head, target):
-        start = prev = ListNode(0)
-        prev.next = head
-        curr = head
-        
-        while curr and curr.val == target:
-            print curr.val
-            start.next = prev.next = curr.next
-            curr = curr.next
+        start = ListNode(0)
+        start.next = head
+        curr = start
 
-        while curr:
-            print curr.val
-            if curr.val == target:
-                prev.next = curr.next
+        while curr.next:
+            if curr.next.val == target:
+                curr.next = curr.next.next
             else:
-                prev = curr
-            curr = curr.next
-
+                curr = curr.next
         return start.next
-
+        
 if __name__ == "__main__":
     def generateList(start, end):
         beg = ListNode(start)
