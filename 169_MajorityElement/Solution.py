@@ -13,6 +13,7 @@ class Solution:
 
     def majorityElement1(self, nums):
         # Moore's voting algorithms
+        # http://blog.csdn.net/chfe007/article/details/42919017
         candidate, count = None, 0
         for x in nums:
             if count == 0:
