@@ -1,4 +1,4 @@
-# A collection of solutions in variety languages
+# An unseful collection of solutions in variety languages
 # http://rosettacode.org/wiki/Spiral_matrix
 
 class Solution:
