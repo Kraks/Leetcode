@@ -12,6 +12,23 @@ var sortColors = function(nums) {
   }
 };
 
+// another solution
+
+var swap = function(arr, i, j) {
+  var t = arr[j];
+  arr[j] = arr[i];
+  arr[i] = t;
+};
+
+var sortColors = function(nums) {
+  var r = 0, w = 0, b = nums.length;
+  while (w < b) {
+    if (nums[w] == 0) swap(nums, r++, w++);
+    else if (nums[w] == 2) swap(nums, --b, w);
+    else w++;
+  }
+};
+
 var nums = [2, 0];
 sortColors(nums);
 console.log(nums);
