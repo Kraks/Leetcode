@@ -35,6 +35,7 @@ class Solution:
             if node.left: q.append((node.left, level+1))
             if node.right: q.append((node.right, level+1))
             current_level = level
+            
         res.append(current_res)
         return res
 
