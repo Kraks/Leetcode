@@ -20,12 +20,8 @@ void auxConnectLeft(TreeLinkNode* node, TreeLinkNode* parent) {
 }
 
 void auxConnectRight(TreeLinkNode* node, TreeLinkNode* parent) {
-    if (parent->next){
-        node->next = parent->next->left;
-    }
-    else {
-        node->next = NULL;
-    }
+    if (parent->next) node->next = parent->next->left;
+    else node->next = NULL;
     auxConnect(node);
 }
  
