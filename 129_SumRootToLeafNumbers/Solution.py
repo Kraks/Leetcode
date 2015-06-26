@@ -7,7 +7,6 @@ class TreeNode:
         self.left = None
         self.right = None
 
-
 class Solution:
     # @param {TreeNode} root
     # @return {integer}
