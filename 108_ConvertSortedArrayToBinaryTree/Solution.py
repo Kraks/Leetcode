@@ -24,9 +24,9 @@ class Solution:
 q = []
 def inOrder(root):
     if root:
-        if root.left: inOrder(root.left)
+        inOrder(root.left)
         q.append(root.val)
-        if root.right: inOrder(root.right)
+        inOrder(root.right)
     return q
 
 s = Solution()
