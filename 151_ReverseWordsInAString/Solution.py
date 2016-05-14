@@ -7,5 +7,6 @@ class Solution:
         seg.reverse()
         return " ".join(seg)
 
-s = Solution()
-print s.reverseWords("the sky is blue")
+if __name__ == "__main__":
+    s = Solution()
+    print s.reverseWords("the sky is blue")
