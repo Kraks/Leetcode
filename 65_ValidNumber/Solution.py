@@ -7,7 +7,6 @@ class Option(Box): pass
 class ZeroMore(Box): pass
 class OnceMore(Box): pass
 class Or(list): pass
-class Seq(list): pass
 
 ##################
 
@@ -23,8 +22,8 @@ def match(patterns, string, pos):
         return pos == len(string)
 
     pat = patterns[0]
-
-    if isinstance(pat, Or):
+    t = pat.__class__
+    if t == Or:
         rest = patterns[1:]
         if len(pat) > 2:
             return match([pat[0]] + rest, string, pos) \
@@ -34,23 +33,23 @@ def match(patterns, string, pos):
                 or match([pat[1]] + rest, string, pos)
         else: raise Eexception("Invalid Or pattern")
 
-    if isinstance(pat, ZeroMore):
+    if t == ZeroMore:
         return match(patterns[1:], string, pos) \
             or match([pat.x] + patterns, string, pos)
 
-    if isinstance(pat, OnceMore):
+    if t == OnceMore:
         return match([pat.x, ZeroMore(pat.x)] + patterns[1:], string, pos)
 
-    if isinstance(pat, Option):
+    if t == Option:
         return match([Or([pat.x, ""])] + patterns[1:], string, pos)
 
-    if isinstance(pat, str):
+    if t == str:
         length = len(pat)
         return len(string) >= (pos + length) \
             and isSubstring(pat, string, pos, pos+length) \
             and match(patterns[1:], string, pos+length)
 
-    if isinstance(pat, list):
+    if t == list:
         return match(pat + patterns[1:], string, pos)
 
     raise Eexception("Bad patterns")
@@ -59,18 +58,18 @@ def match(patterns, string, pos):
 
 Dot = "."
 Digits = Or(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
-E = Or(["e", "E"])
-Whitespace = Or([" ", "\t", "\n"])
+E = "e" #Or(["e", "E"])
+Whitespace = " " #Or([" ", "\t", "\n"])
 Whitespaces = ZeroMore(Whitespace)
 Signs = Or(["+", "-"])
 
-decimal = [Option(Signs), OnceMore(Digits)]
-real = [Option(Signs), Or([[OnceMore(Digits), Option(Dot), ZeroMore(Digits)],
-                           [ZeroMore(Digits), Option(Dot), OnceMore(Digits)]])]
-sci = [real, E, decimal]
+real = Or([[OnceMore(Digits), Option(Dot), ZeroMore(Digits)],
+           [ZeroMore(Digits), Option(Dot), OnceMore(Digits)]])
 
 numPattern = [Whitespaces,
-              Or([decimal, real, sci]),
+              Option(Signs),
+              real,
+              Option([E, Option(Signs), OnceMore(Digits)]),
               Whitespaces]
 
 class Solution(object):
