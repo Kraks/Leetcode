@@ -30,7 +30,7 @@ class Solution:
         return self.ret
 
     def aux(self, current, dicts, path):
-        if self.shortestLen != None and len(path) > self.shortestLen: pass
+        if self.shortestLen != None and len(path) >= self.shortestLen: pass
         elif len(dicts) == 0: pass
         elif isDiffOne(self.end, current):
             newPath = path + [self.end]
