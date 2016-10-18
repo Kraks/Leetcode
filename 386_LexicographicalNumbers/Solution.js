@@ -1,3 +1,5 @@
+// A CPS style solution, works well, but not fast enough.
+
 /**
  * @param {number} n
  * @return {number[]}
