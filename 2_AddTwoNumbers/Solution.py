@@ -16,19 +16,14 @@ class Solution(object):
     def addAux(self, l1, l2, carry):
         n1 = l1.val if l1 else 0
         n2 = l2.val if l2 else 0
-        res, carry = self.add(n1, n2, carry)
+        sum = n1 + n2 + carry
+        res = ListNode(sum % 10)
+        carry = 1 if sum > 9 else 0
         x1 = l1.next if l1 else None
         x2 = l2.next if l2 else None
         if x1 or x2 or carry:
             res.next = self.addAux(x1, x2, carry)
         return res
-
-    def add(self, n1, n2, carry):
-        # num, num -> (ListNode, num)
-        result = n1 + n2 + carry
-        if result >= 10:
-            return (ListNode(result - 10), 1)
-        return (ListNode(result), 0)
 
 def printList(l):
     if l:
