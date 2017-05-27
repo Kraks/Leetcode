@@ -4,7 +4,7 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        p = dict()
+        p = dict() # char -> last_index
         longest = 0
         start = 0
         i = 0
