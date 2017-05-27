@@ -4,34 +4,18 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        if len(s) == 0: return 0
-
-        d = dict()
+        p = dict()
         longest = 0
         start = 0
         i = 0
 
         while i < len(s):
-            if d.has_key(s[i]) and d[s[i]] >= start:
-                start = d[s[i]]+1
+            if p.has_key(s[i]) and p[s[i]] >= start:
+                start = p[s[i]]+1
             longest = max(longest, i - start + 1)
-            d[s[i]] = i
+            p[s[i]] = i
             i += 1
         return longest
-
-    def lengthOfLongestSubstringNaive(self, s):
-        g = 0
-        for i in range(len(s)):
-            d = dict()
-            longest = 0
-            for x in s[i:]:
-                if d.has_key(x): 
-                    if longest > g: g = longest
-                    break
-                longest += 1
-                d[x] = None
-            if longest > g: g = longest
-        return g
 
 if __name__ == "__main__":
     S = Solution()
